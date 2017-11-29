@@ -6,30 +6,25 @@ let instance;
 const ImagePreviewConstructor = Vue.extend(ImagePreview);
 
 const initInstance = () => {
-  /* istanbul ignore if */
-  if (Vue.prototype.$isServer) return;
   instance = new ImagePreviewConstructor({
     el: document.createElement('div')
   });
+  document.body.appendChild(instance.$el);
 };
 
-var ImagePreviewBox = images => {
-  /* istanbul ignore if */
-  if (Vue.prototype.$isServer) return;
+const ImagePreviewBox = (images, startPosition = 0) => {
   if (!instance) {
     initInstance();
   }
 
-  /* istanbul ignore else */
-  if (!instance.value) {
-    instance.images = images;
+  instance.images = images;
+  instance.startPosition = startPosition;
+  instance.value = true;
+  instance.$on('input', show => {
+    instance.value = show;
+  });
 
-    document.body.appendChild(instance.$el);
-
-    Vue.nextTick(() => {
-      instance.value = true;
-    });
-  }
+  return instance;
 };
 
 export default ImagePreviewBox;

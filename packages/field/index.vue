@@ -2,7 +2,8 @@
   <van-cell
     :title="label"
     :required="required"
-    :class="['van-field', {
+    class="van-field"
+    :class="{
       'van-field--has-textarea': type === 'textarea',
       'van-field--nolabel': !label,
       'van-field--disabled': $attrs.disabled,
@@ -11,7 +12,7 @@
       'van-field--autosize': autosize,
       'van-field--has-icon': hasIcon,
       'van-hairline--surround': border
-    }]">
+    }">
     <textarea
       v-if="type === 'textarea'"
       v-bind="$attrs"
@@ -49,8 +50,6 @@
 import Cell from '../cell';
 import Icon from '../icon';
 
-const VALID_TYPES = ['text', 'number', 'email', 'url', 'tel', 'date', 'time', 'datetime', 'password', 'textarea'];
-
 export default {
   name: 'van-field',
 
@@ -62,15 +61,14 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'text',
-      validator: value => VALID_TYPES.indexOf(value) > -1
+      default: 'text'
     },
     value: {},
     icon: String,
     label: String,
     error: Boolean,
-    required: Boolean,
     border: Boolean,
+    required: Boolean,
     autosize: Boolean,
     onIconClick: {
       type: Function,
@@ -89,7 +87,10 @@ export default {
   mounted() {
     if (this.autosize && this.type === 'textarea') {
       const el = this.$refs.textarea;
-      el.style.height = el.scrollHeight + 'px';
+      const scrollHeight = el.scrollHeight;
+      if (scrollHeight !== 0) {
+        el.style.height = scrollHeight + 'px';
+      }
       el.style.overflowY = 'hidden';
     }
   },

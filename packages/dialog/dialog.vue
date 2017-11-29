@@ -14,15 +14,16 @@
           v-show="showCancelButton"
           @click="handleAction('cancel')"
         >
-          {{ cancelButtonText }}
+          {{ cancelButtonText || $t('cancel') }}
         </van-button>
         <van-button
           size="large"
-          :class="['van-dialog__confirm', { 'van-hairline--left': showCancelButton && showConfirmButton }]"
+          class="van-dialog__confirm"
+          :class="{ 'van-hairline--left': showCancelButton && showConfirmButton }"
           v-show="showConfirmButton"
           @click="handleAction('confirm')"
         >
-          {{ confirmButtonText }}
+          {{ confirmButtonText || $t('confirm') }}
         </van-button>
       </div>
     </div>
@@ -32,6 +33,7 @@
 <script>
 import Button from '../button';
 import Popup from '../mixins/popup';
+import { i18n } from '../locale';
 
 export default {
   name: 'van-dialog',
@@ -40,17 +42,14 @@ export default {
     [Button.name]: Button
   },
 
-  mixins: [Popup],
+  mixins: [Popup, i18n],
 
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    message: {
-      type: String,
-      default: ''
-    },
+    title: String,
+    message: String,
+    callback: Function,
+    confirmButtonText: String,
+    cancelButtonText: String,
     showConfirmButton: {
       type: Boolean,
       default: true
@@ -58,17 +57,6 @@ export default {
     showCancelButton: {
       type: Boolean,
       default: false
-    },
-    confirmButtonText: {
-      type: String,
-      default: '确认'
-    },
-    cancelButtonText: {
-      type: String,
-      default: '取消'
-    },
-    callback: {
-      type: Function
     },
     overlay: {
       default: true

@@ -1,7 +1,7 @@
 import { mount } from 'avoriaz';
 import AddressEdit from 'packages/address-edit';
 import AddressDetail from 'packages/address-edit/Detail';
-import areaList from '../../../docs/mock/area.json';
+import areaList from '../mock/area.json';
 
 describe('AddressEdit', () => {
   let wrapper;
@@ -22,7 +22,7 @@ describe('AddressEdit', () => {
 
   it('create a AddressEdit with props', () => {
     const addressInfo = {
-      user_name: '测试',
+      name: '测试',
       tel: '123123213',
       province: '浙江省',
       city: '杭州市',
@@ -43,7 +43,7 @@ describe('AddressEdit', () => {
       }
     });
 
-    expect(wrapper.find('.van-field__control')[0].element.value).to.equal(addressInfo.user_name);
+    expect(wrapper.find('.van-field__control')[0].element.value).to.equal(addressInfo.name);
     expect(wrapper.find('.van-field__control')[1].element.value).to.equal(addressInfo.tel);
     expect(wrapper.find('.van-field__control')[2].element.value).to.equal(addressInfo.address_detail);
     expect(wrapper.find('.van-field__control')[3].element.value).to.equal(addressInfo.postal_code);
@@ -55,7 +55,7 @@ describe('AddressEdit', () => {
 
   it('save AddressInfo', () => {
     const addressInfo = {
-      user_name: '',
+      name: '',
       tel: '123123213',
       province: '浙江省',
       city: '杭州市',
@@ -79,21 +79,21 @@ describe('AddressEdit', () => {
     const saveButton = wrapper.find('.van-button')[0];
 
     // name empty
-    wrapper.vm.addressInfo.user_name = '';
+    wrapper.vm.addressInfo.name = '';
     saveButton.trigger('click');
-    expect(wrapper.vm.errorInfo['user_name']).to.be.true;
+    expect(wrapper.vm.errorInfo['name']).to.be.true;
     wrapper.find('.van-field__control')[0].trigger('focus');
-    expect(wrapper.vm.errorInfo['user_name']).to.be.false;
+    expect(wrapper.vm.errorInfo['name']).to.be.false;
 
     // name too long
-    wrapper.vm.addressInfo.user_name = '111111111111111111111111111';
+    wrapper.vm.addressInfo.name = '111111111111111111111111111';
     saveButton.trigger('click');
-    expect(wrapper.vm.errorInfo['user_name']).to.be.true;
+    expect(wrapper.vm.errorInfo['name']).to.be.true;
     wrapper.find('.van-field__control')[0].trigger('focus');
-    expect(wrapper.vm.errorInfo['user_name']).to.be.false;
+    expect(wrapper.vm.errorInfo['name']).to.be.false;
 
     // tel empty
-    wrapper.vm.addressInfo.user_name = '123';
+    wrapper.vm.addressInfo.name = '123';
     wrapper.vm.addressInfo.tel = '';
     saveButton.trigger('click');
     expect(wrapper.vm.errorInfo['tel']).to.be.true;
@@ -268,7 +268,7 @@ describe('AddressEdit', () => {
       }
     });
 
-    wrapper.vm.isAndriod = false;
+    wrapper.vm.isAndroid = false;
     wrapper.find('.van-field__control')[2].trigger('focus');
 
     wrapper.vm.$nextTick(() => {
@@ -280,7 +280,7 @@ describe('AddressEdit', () => {
     });
   });
 
-  it('finish edit address detail in andriod', done => {
+  it('finish edit address detail in android', done => {
     wrapper = mount(AddressDetail, {
       propsData: {
         value: '123'
@@ -307,7 +307,7 @@ describe('AddressEdit', () => {
 
   it('watch address info', done => {
     const addressInfo = {
-      user_name: '123'
+      name: '123'
     };
 
     wrapper = mount(AddressEdit, {
@@ -318,7 +318,7 @@ describe('AddressEdit', () => {
 
     wrapper.setProps({ addressInfo });
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.vm.currentInfo.user_name).to.equal('123');
+      expect(wrapper.vm.currentInfo.name).to.equal('123');
       done();
     });
   });

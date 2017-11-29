@@ -3,9 +3,11 @@
 
 .van-card {
   color: $text-color;
-  height: 90px;
+  height: 100px;
+  font-size: 16px;
   background: #fafafa;
   position: relative;
+  box-sizing: border-box;
   padding: 5px 15px 5px 115px;
 
   &:not(:first-child) {
@@ -62,7 +64,7 @@
     color: $gray-darker;
     font-size: 12px;
     max-height: 20px;
-    @mixin multi-ellipsis 1;
+    @mixin ellipsis;
   }
 
   &__price,

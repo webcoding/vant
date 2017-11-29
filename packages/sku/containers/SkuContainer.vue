@@ -1,5 +1,5 @@
 <template>
-  <van-popup v-model="show" v-if="!isSkuEmpty" position="bottom" :lock-scroll="true">
+  <van-popup v-model="show" v-if="!isSkuEmpty" position="bottom" lockOnScroll preventScroll>
     <div class="van-sku-container">
       <div class="van-sku-layout">
         <slot name="sku-header" :skuEventBus="skuEventBus" :selectedSku="selectedSku" :selectedSkuComb="selectedSkuComb">
@@ -12,8 +12,8 @@
           </van-sku-header>
         </slot>
         <div class="van-sku-body scroller" :style="bodyStyle">
-          <slot name="sku-group" :selectedSku="selectedSku">
-            <div v-if="hasSku" class="van-sku-group-container">
+          <slot name="sku-group" :selectedSku="selectedSku" :skuEventBus="skuEventBus">
+            <div v-if="hasSku" class="van-sku-group-container van-hairline--bottom">
               <div v-for="(skuTreeItem, index) in skuTree"
                 class="van-sku-row-group"
                 :key="index">
@@ -72,6 +72,7 @@
 
 <script>
 import Vue from 'vue';
+import { isServer } from '../../utils';
 import Popup from '../../popup';
 import Toast from '../../toast';
 import SkuHeader from '../components/SkuHeader';
@@ -116,10 +117,7 @@ export default {
       type: Number,
       default: 0
     },
-    hideStock: {
-      type: Boolean,
-      default: false
-    },
+    hideStock: Boolean,
     showAddCartBtn: {
       type: Boolean,
       default: true
@@ -179,6 +177,10 @@ export default {
 
   computed: {
     bodyStyle() {
+      if (isServer) {
+        return;
+      }
+
       const windowHeight = window.innerHeight;
       // header高度82px, sku actions高度50px，如果改动了样式自己传下bodyOffsetTop调整下
       const maxHeight = windowHeight - this.bodyOffsetTop;

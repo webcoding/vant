@@ -8,16 +8,24 @@
     height: 40px;
     line-height: 40px;
     overflow: hidden;
+  }
+
+  &__cancel,
+  &__confirm {
     padding: 0 15px;
+
+    &:active {
+      background-color: $active-color;
+    }
   }
 
   &__cancel {
-    color: #3388FF;
+    color: $blue;
     float: left;
   }
 
   &__confirm {
-    color: #3388FF;
+    color: $blue;
     float: right;
   }
 

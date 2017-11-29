@@ -1,11 +1,11 @@
 <template>
-  <div :class="['van-tab__pane', { 'van-tab__pane--select': key === $parent.curActive }]">
+  <div class="van-tab__pane" :class="{ 'van-tab__pane--select': key === $parent.curActive }">
     <slot></slot>
   </div>
 </template>
 
 <script>
-import findParent from '../mixins/findParent';
+import findParent from '../mixins/find-parent';
 
 export default {
   name: 'van-tab',
@@ -21,7 +21,7 @@ export default {
   },
 
   data() {
-    this.findParentByComponentName('van-tabs');
+    this.findParentByName('van-tabs');
     const nextIndex = this.parentGroup.tabs.length;
     this.updateParentData(nextIndex);
     return {
@@ -46,6 +46,19 @@ export default {
         disabled: this.disabled,
         index
       });
+    }
+  },
+
+  destroyed() {
+    const key = this.key;
+    const tabs = this.parentGroup.tabs;
+
+    for (let i = 0; i < tabs.length; i++) {
+      /* istanbul ignore else */
+      if (tabs[i].index === key) {
+        this.parentGroup.tabs.splice(i, 1);
+        return;
+      }
     }
   }
 };

@@ -1,7 +1,14 @@
 <template>
   <div class="van-uploader">
     <slot></slot>
-    <input type="file" @change="onValueChange" :disabled="disabled" class="van-uploader__input" ref="input" />
+    <input
+      ref="input"
+      type="file"
+      class="van-uploader__input"
+      v-bind="$attrs"
+      :disabled="disabled"
+      @change="onValueChange"
+    />
   </div>
 </template>
 
@@ -10,16 +17,12 @@ export default {
   name: 'van-uploader',
 
   props: {
-    disabled: {
-      type: Boolean,
-      default: false
-    },
+    disabled: Boolean,
     beforeRead: Function,
     afterRead: Function,
     resultType: {
       type: String,
-      default: 'dataUrl',
-      validator: value => value === 'dataUrl' || value === 'text'
+      default: 'dataUrl'
     }
   },
 

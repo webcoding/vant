@@ -1,3 +1,4 @@
+// This file is auto gererated by build/bin/build-entry.js
 import Actionsheet from './actionsheet';
 import AddressEdit from './address-edit';
 import AddressList from './address-list';
@@ -27,9 +28,11 @@ import Icon from './icon';
 import ImagePreview from './image-preview';
 import Lazyload from './lazyload';
 import Loading from './loading';
+import Locale from './locale';
 import NavBar from './nav-bar';
 import NoticeBar from './notice-bar';
 import NumberKeyboard from './number-keyboard';
+import Pagination from './pagination';
 import Panel from './panel';
 import PasswordInput from './password-input';
 import Picker from './picker';
@@ -50,6 +53,8 @@ import SwipeItem from './swipe-item';
 import Switch from './switch';
 import SwitchCell from './switch-cell';
 import Tab from './tab';
+import Tabbar from './tabbar';
+import TabbarItem from './tabbar-item';
 import Tabs from './tabs';
 import Tag from './tag';
 import Toast from './toast';
@@ -57,7 +62,7 @@ import TreeSelect from './tree-select';
 import Uploader from './uploader';
 import Waterfall from './waterfall';
 
-const version = '0.9.9';
+const version = '0.11.3';
 const components = [
   Actionsheet,
   AddressEdit,
@@ -88,6 +93,7 @@ const components = [
   NavBar,
   NoticeBar,
   NumberKeyboard,
+  Pagination,
   Panel,
   PasswordInput,
   Picker,
@@ -108,21 +114,20 @@ const components = [
   Switch,
   SwitchCell,
   Tab,
+  Tabbar,
+  TabbarItem,
   Tabs,
   Tag,
   TreeSelect,
   Uploader
 ];
 
-const install = function(Vue) {
-  if (install.installed) return;
-
+const install = Vue => {
   components.forEach(component => {
     Vue.component(component.name, component);
   });
 };
 
-/* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
@@ -159,9 +164,11 @@ export {
   ImagePreview,
   Lazyload,
   Loading,
+  Locale,
   NavBar,
   NoticeBar,
   NumberKeyboard,
+  Pagination,
   Panel,
   PasswordInput,
   Picker,
@@ -182,6 +189,8 @@ export {
   Switch,
   SwitchCell,
   Tab,
+  Tabbar,
+  TabbarItem,
   Tabs,
   Tag,
   Toast,
@@ -189,6 +198,7 @@ export {
   Uploader,
   Waterfall
 };
+
 export default {
   install,
   version

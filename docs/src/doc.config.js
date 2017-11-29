@@ -1,38 +1,58 @@
 /* eslint-disable */
 module.exports = {
-  "zh-CN": {
+  'zh-CN': {
     header: {
-      '首页': 'https://www.youzanyun.com/zanui',
-      'PC端': 'https://www.youzanyun.com/zanui/react',
-      '移动端': 'https://www.youzanyun.com/zanui/vue',
-      '微信小程序': 'https://github.com/youzan/zanui-weapp'
+      lang: {
+        text: 'En',
+        from: 'zh-CN',
+        to: 'en-US'
+      },
+      github: 'https://github.com/youzan/vant'
     },
     footer: {
       github: 'https://github.com/youzan/vant',
       nav: {
-        '有赞官网': 'https://www.youzan.com/',
-        '加入我们': 'https://job.youzan.com/',
-        '意见反馈': 'https://github.com/youzan/vant/issues'
+        'React 组件库': 'https://www.youzanyun.com/zanui/zent',
+        小程序组件库: 'https://github.com/youzan/zanui-weapp',
+        意见反馈: 'https://github.com/youzan/vant/issues',
+        开发指南: 'https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.zh-CN.md',
+        加入我们: 'https://job.youzan.com'
       }
     },
     nav: [
       {
-        "name": "开发指南",
-        "groups": [
+        name: '开发指南',
+        groups: [
           {
-            "list": [
+            list: [
               {
-                "path": "/quickstart",
-                "title": "快速上手",
+                path: '/quickstart',
+                title: '快速上手',
                 noExample: true
               },
               {
-                "title": "业务组件",
-                "link": "/zanui/captain/component/quickstart"
+                title: '业务组件',
+                link: '/zanui/captain'
               },
               {
-                "path": "/changelog",
-                "title": "更新日志",
+                path: '/changelog',
+                title: '更新日志',
+                noExample: true
+              },
+              {
+                path: '/theme',
+                title: '定制主题',
+                noExample: true
+              },
+              {
+                path: '/demo',
+                title: '示例页面',
+                noDocument: true,
+                noExample: true
+              },
+              {
+                path: '/i18n',
+                title: '国际化',
                 noExample: true
               }
             ]
@@ -40,211 +60,495 @@ module.exports = {
         ]
       },
       {
-        "name": "组件",
-        "showInMobile": true,
-        "groups": [
+        name: '组件',
+        showInMobile: true,
+        groups: [
           {
-            "groupName": "基础组件",
-            "list": [
+            groupName: '基础组件',
+            list: [
               {
-                "path": "/layout",
-                "title": "Layout 布局"
+                path: '/layout',
+                title: 'Layout - 布局'
               },
               {
-                "path": "/badge",
-                "title": "Badge 徽章"
+                path: '/badge',
+                title: 'Badge - 徽章'
               },
               {
-                "path": "/button",
-                "title": "Button 按钮"
+                path: '/button',
+                title: 'Button - 按钮'
               },
               {
-                "path": "/card",
-                "title": "Card 卡片"
+                path: '/card',
+                title: 'Card - 卡片'
               },
               {
-                "path": "/cell",
-                "title": "Cell 单元格"
+                path: '/cell',
+                title: 'Cell - 单元格'
               },
               {
-                "path": "/icon",
-                "title": "Icon 图标"
+                path: '/icon',
+                title: 'Icon - 图标'
               },
               {
-                "path": "/image-preview",
-                "title": "ImagePreview 图片预览"
+                path: '/image-preview',
+                title: 'ImagePreview - 图片预览'
               },
               {
-                "path": "/lazyload",
-                "title": "Lazyload 图片懒加载"
+                path: '/lazyload',
+                title: 'Lazyload - 图片懒加载'
               },
               {
-                "path": "/loading",
-                "title": "Loading 加载"
+                path: '/loading',
+                title: 'Loading - 加载'
               },
               {
-                "path": "/nav-bar",
-                "title": "NavBar 导航栏"
+                path: '/nav-bar',
+                title: 'NavBar - 导航栏'
               },
               {
-                "path": "/notice-bar",
-                "title": "NoticeBar 通告栏"
+                path: '/notice-bar',
+                title: 'NoticeBar - 通告栏'
               },
               {
-                "path": "/panel",
-                "title": "Panel 面板"
+                path: '/pagination',
+                title: 'Pagination - 分页'
               },
               {
-                "path": "/popup",
-                "title": "Popup 弹出层"
+                path: '/panel',
+                title: 'Panel - 面板'
               },
               {
-                "path": "/progress",
-                "title": "Progress 进度条"
+                path: '/popup',
+                title: 'Popup - 弹出层'
               },
               {
-                "path": "/search",
-                "title": "Search 搜索"
+                path: '/progress',
+                title: 'Progress - 进度条'
               },
               {
-                "path": "/stepper",
-                "title": "Stepper 步进器"
+                path: '/search',
+                title: 'Search - 搜索'
               },
               {
-                "path": "/steps",
-                "title": "Steps 步骤条"
+                path: '/stepper',
+                title: 'Stepper - 步进器'
               },
               {
-                "path": "/swipe",
-                "title": "Swipe 轮播"
+                path: '/steps',
+                title: 'Steps - 步骤条'
               },
               {
-                "path": "/tab",
-                "title": "Tab 标签"
+                path: '/swipe',
+                title: 'Swipe - 轮播'
               },
               {
-                "path": "/tag",
-                "title": "Tag 标记"
+                path: '/tab',
+                title: 'Tab - 标签页'
               },
               {
-                "path": "/waterfall",
-                "title": "Waterfall 瀑布流"
+                path: '/tabbar',
+                title: 'Tabbar - 标签栏'
+              },
+              {
+                path: '/tag',
+                title: 'Tag - 标记'
+              },
+              {
+                path: '/waterfall',
+                title: 'Waterfall - 瀑布流'
               }
             ]
           },
           {
-            "groupName": "表单",
-            "list": [
+            groupName: '表单',
+            list: [
               {
-                "path": "/checkbox",
-                "title": "Checkbox 复选框"
+                path: '/checkbox',
+                title: 'Checkbox - 复选框'
               },
               {
-                "path": "/field",
-                "title": "Field 输入框"
+                path: '/field',
+                title: 'Field - 输入框'
               },
               {
-                "path": "/number-keyboard",
-                "title": "NumberKeyboard 数字键盘"
+                path: '/number-keyboard',
+                title: 'NumberKeyboard - 数字键盘'
               },
               {
-                "path": "/password-input",
-                "title": "PasswordInput 密码输入框"
+                path: '/password-input',
+                title: 'PasswordInput - 密码输入框'
               },
               {
-                "path": "/radio",
-                "title": "Radio 单选框"
+                path: '/radio',
+                title: 'Radio - 单选框'
               },
               {
-                "path": "/switch",
-                "title": "Switch 开关"
+                path: '/switch',
+                title: 'Switch - 开关'
               },
               {
-                "path": "/uploader",
-                "title": "Uploader 图片上传"
+                path: '/uploader',
+                title: 'Uploader - 图片上传'
               }
             ]
           },
           {
-            "groupName": "操作反馈",
-            "list": [
+            groupName: '操作反馈',
+            list: [
               {
-                "path": "/actionsheet",
-                "title": "Actionsheet 行动按钮"
+                path: '/actionsheet',
+                title: 'Actionsheet - 行动按钮'
               },
               {
-                "path": "/datetime-picker",
-                "title": "DatetimePicker 时间选择"
+                path: '/datetime-picker',
+                title: 'DatetimePicker - 时间选择'
               },
               {
-                "path": "/dialog",
-                "title": "Dialog 弹出框"
+                path: '/dialog',
+                title: 'Dialog - 弹出框'
               },
               {
-                "path": "/picker",
-                "title": "Picker 选择器"
+                path: '/picker',
+                title: 'Picker - 选择器'
               },
               {
-                "path": "/pull-refresh",
-                "title": "PullRefresh 下拉刷新"
+                path: '/pull-refresh',
+                title: 'PullRefresh - 下拉刷新'
               },
               {
-                "path": "/toast",
-                "title": "Toast 轻提示"
+                path: '/toast',
+                title: 'Toast - 轻提示'
               }
             ]
           },
           {
-            "groupName": "高阶组件",
-            "list": [
+            groupName: '高阶组件',
+            list: [
               {
-                "path": "/cell-swipe",
-                "title": "CellSwipe 滑动单元格"
+                path: '/cell-swipe',
+                title: 'CellSwipe - 滑动单元格'
               },
               {
-                "path": "/switch-cell",
-                "title": "SwitchCell 开关单元格"
+                path: '/switch-cell',
+                title: 'SwitchCell - 开关单元格'
               },
               {
-                "path": "/tree-select",
-                "title": "TreeSelect 分类选择"
-              },
+                path: '/tree-select',
+                title: 'TreeSelect - 分类选择'
+              }
             ]
           },
           {
-            "groupName": "业务组件",
-            "list": [
+            groupName: '业务组件',
+            list: [
               {
-                "path": "/address-edit",
-                "title": "AddressEdit 地址编辑"
+                path: '/address-edit',
+                title: 'AddressEdit - 地址编辑'
               },
               {
-                "path": "/address-list",
-                "title": "AddressList 地址列表"
+                path: '/address-list',
+                title: 'AddressList - 地址列表'
               },
               {
-                "path": "/area",
-                "title": "Area 省市区选择"
+                path: '/area',
+                title: 'Area - 省市区选择'
               },
               {
-                "path": "/contact",
-                "title": "Contact 联系人"
+                path: '/contact',
+                title: 'Contact - 联系人'
               },
               {
-                "path": "/coupon",
-                "title": "Coupon 优惠券选择器"
+                path: '/coupon',
+                title: 'Coupon - 优惠券选择器'
               },
               {
-                "path": "/goods-action",
-                "title": "GoodsAction 商品页行动点"
+                path: '/goods-action',
+                title: 'GoodsAction - 商品页行动点'
               },
               {
-                "path": "/submit-bar",
-                "title": "SubmitBar 提交订单栏"
+                path: '/submit-bar',
+                title: 'SubmitBar - 提交订单栏'
               },
               {
-                "path": "/sku",
-                "title": "Sku 商品规格弹层"
+                path: '/sku',
+                title: 'Sku - 商品规格弹层'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  'en-US': {
+    header: {
+      lang: {
+        text: '中文',
+        from: 'en-US',
+        to: 'zh-CN'
+      },
+      github: 'https://github.com/youzan/vant'
+    },
+    footer: {
+      github: 'https://github.com/youzan/vant',
+      nav: {
+        'React UI': 'https://www.youzanyun.com/zanui/zent',
+        'Weapp UI': 'https://github.com/youzan/zanui-weapp',
+        Feedback: 'https://github.com/youzan/vant/issues',
+        Contribute:
+          'https://github.com/youzan/vant/blob/dev/.github/CONTRIBUTING.md'
+      }
+    },
+    nav: [
+      {
+        name: 'Essentials',
+        groups: [
+          {
+            list: [
+              {
+                path: '/quickstart',
+                title: 'Getting Started',
+                noExample: true
+              },
+              {
+                path: '/changelog',
+                title: 'Changelog',
+                noExample: true
+              },
+              {
+                path: '/theme',
+                title: 'Custom Theme',
+                noExample: true
+              },
+              {
+                path: '/demo',
+                title: 'Demo pages',
+                noDocument: true,
+                noExample: true
+              },
+              {
+                path: '/i18n',
+                title: 'Internationalization',
+                noExample: true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Components',
+        showInMobile: true,
+        groups: [
+          {
+            groupName: 'Basic Components',
+            list: [
+              {
+                path: '/layout',
+                title: 'Layout'
+              },
+              {
+                path: '/badge',
+                title: 'Badge'
+              },
+              {
+                path: '/button',
+                title: 'Button'
+              },
+              {
+                path: '/card',
+                title: 'Card'
+              },
+              {
+                path: '/cell',
+                title: 'Cell'
+              },
+              {
+                path: '/icon',
+                title: 'Icon'
+              },
+              {
+                path: '/image-preview',
+                title: 'ImagePreview'
+              },
+              {
+                path: '/lazyload',
+                title: 'Lazyload'
+              },
+              {
+                path: '/loading',
+                title: 'Loading'
+              },
+              {
+                path: '/nav-bar',
+                title: 'NavBar'
+              },
+              {
+                path: '/notice-bar',
+                title: 'NoticeBar'
+              },
+              {
+                path: '/pagination',
+                title: 'Pagination'
+              },
+              {
+                path: '/panel',
+                title: 'Panel'
+              },
+              {
+                path: '/popup',
+                title: 'Popup'
+              },
+              {
+                path: '/progress',
+                title: 'Progress'
+              },
+              {
+                path: '/search',
+                title: 'Search'
+              },
+              {
+                path: '/stepper',
+                title: 'Stepper'
+              },
+              {
+                path: '/steps',
+                title: 'Steps'
+              },
+              {
+                path: '/swipe',
+                title: 'Swipe'
+              },
+              {
+                path: '/tab',
+                title: 'Tab'
+              },
+              {
+                path: '/tabbar',
+                title: 'Tabbar'
+              },
+              {
+                path: '/tag',
+                title: 'Tag'
+              },
+              {
+                path: '/waterfall',
+                title: 'Waterfall'
+              }
+            ]
+          },
+          {
+            groupName: 'Form Components',
+            list: [
+              {
+                path: '/checkbox',
+                title: 'Checkbox'
+              },
+              {
+                path: '/field',
+                title: 'Field'
+              },
+              {
+                path: '/number-keyboard',
+                title: 'NumberKeyboard'
+              },
+              {
+                path: '/password-input',
+                title: 'PasswordInput'
+              },
+              {
+                path: '/radio',
+                title: 'Radio'
+              },
+              {
+                path: '/switch',
+                title: 'Switch'
+              },
+              {
+                path: '/uploader',
+                title: 'Uploader'
+              }
+            ]
+          },
+          {
+            groupName: 'Action Components',
+            list: [
+              {
+                path: '/actionsheet',
+                title: 'Actionsheet'
+              },
+              {
+                path: '/datetime-picker',
+                title: 'DatetimePicker'
+              },
+              {
+                path: '/dialog',
+                title: 'Dialog'
+              },
+              {
+                path: '/picker',
+                title: 'Picker'
+              },
+              {
+                path: '/pull-refresh',
+                title: 'PullRefresh'
+              },
+              {
+                path: '/toast',
+                title: 'Toast'
+              }
+            ]
+          },
+          {
+            groupName: 'Advanced Components',
+            list: [
+              {
+                path: '/cell-swipe',
+                title: 'CellSwipe'
+              },
+              {
+                path: '/switch-cell',
+                title: 'SwitchCell'
+              },
+              {
+                path: '/tree-select',
+                title: 'TreeSelect'
+              }
+            ]
+          },
+          {
+            groupName: 'Business Components',
+            list: [
+              {
+                path: '/address-edit',
+                title: 'AddressEdit (In translation)'
+              },
+              {
+                path: '/address-list',
+                title: 'AddressList (In translation)'
+              },
+              {
+                path: '/area',
+                title: 'Area (In translation)'
+              },
+              {
+                path: '/contact',
+                title: 'Contact (In translation)'
+              },
+              {
+                path: '/coupon',
+                title: 'Coupon (In translation)'
+              },
+              {
+                path: '/goods-action',
+                title: 'GoodsAction (In translation)'
+              },
+              {
+                path: '/submit-bar',
+                title: 'SubmitBar (In translation)'
+              },
+              {
+                path: '/sku',
+                title: 'Sku (In translation)'
               }
             ]
           }
@@ -252,4 +556,4 @@ module.exports = {
       }
     ]
   }
-}
+};

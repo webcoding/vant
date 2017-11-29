@@ -9,6 +9,7 @@
     padding: 0 10px;
 
     .van-steps__items {
+      display: flex;
       margin: 0 0 10px;
       overflow: hidden;
       position: relative;
@@ -24,18 +25,6 @@
     padding: 0 0 0 35px;
   }
 
-  &--4 {
-    .van-step {
-      width: 33.2%;
-    }
-  }
-
-  &--3 {
-    .van-step {
-      width: 50%;
-    }
-  }
-
   &__icon {
     float: left;
     margin-right: 10px;
@@ -43,35 +32,29 @@
 
   .van-icon {
     font-size: 40px;
-    line-height: 1;
   }
 
   &__message {
-    display: table;
     height: 40px;
     margin: 15px 0;
-
-    .van-steps__message-wrapper {
-      display: table-cell;
-      vertical-align: middle;
-    }
   }
 
   &__title {
     font-size: 14px;
     color: $text-color;
+    padding-top: 4px;
   }
 
   &__desc {
     font-size: 12px;
     line-height: 1.5;
     color: $gray-dark;
-    max-height: 18px;
-    @mixin multi-ellipsis 1;
+    @mixin ellipsis;
   }
 }
 
 .van-step {
+  flex: 1;
   font-size: 14px;
   position: relative;
   color: $gray-dark;
@@ -150,7 +133,6 @@
       .van-icon {
         font-size: 12px;
         color: $green;
-        line-height: 1;
         display: block;
       }
     }

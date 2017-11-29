@@ -1,19 +1,19 @@
 <template>
   <div 
-    v-clickoutside:touchstart="swipeMove"
+    v-clickoutside:touchstart="onClick"
     class="van-cell-swipe"
-    @click="swipeMove()"
+    @click="onClick('cell')"
     @touchstart="startDrag"
     @touchmove="onDrag"
     @touchend="endDrag"
     @touchcancel="endDrag"
   >
     <div class="van-cell-swipe__wrapper" :style="wrapperStyle" @transitionend="swipe = false">
-      <div class="van-cell-swipe__left" v-if="leftWidth">
+      <div class="van-cell-swipe__left" @click.stop="onClick('left')" v-if="leftWidth">
         <slot name="left"></slot>
       </div>
       <slot></slot>
-      <div class="van-cell-swipe__right" v-if="rightWidth">
+      <div class="van-cell-swipe__right" @click.stop="onClick('right')" v-if="rightWidth">
         <slot name="right"></slot>
       </div>
     </div>
@@ -27,6 +27,7 @@ export default {
   name: 'van-cell-swipe',
 
   props: {
+    onClose: Function,
     leftWidth: {
       type: Number,
       default: 0
@@ -56,9 +57,13 @@ export default {
   },
 
   methods: {
+    close() {
+      this.offset = 0;
+    },
+
     resetSwipeStatus() {
-      this.swiping = false; // 是否正在拖动
-      this.opened = true; // 记录是否滑动左右 或者 注册
+      this.swiping = false;
+      this.opened = true;
     },
 
     swipeMove(offset = 0) {
@@ -82,8 +87,8 @@ export default {
     },
 
     startDrag(event) {
-      this.startX = event.changedTouches[0].pageX;
-      this.startY = event.changedTouches[0].pageY;
+      this.startX = event.touches[0].pageX;
+      this.startY = event.touches[0].pageY;
     },
 
     onDrag(event) {
@@ -93,8 +98,8 @@ export default {
         return;
       }
 
-      const offsetTop = event.changedTouches[0].pageY - this.startY;
-      const offsetLeft = event.changedTouches[0].pageX - this.startX;
+      const offsetTop = event.touches[0].pageY - this.startY;
+      const offsetLeft = event.touches[0].pageX - this.startX;
       if ((offsetLeft < 0 && -offsetLeft > this.rightWidth) ||
         (offsetLeft > 0 && offsetLeft > this.leftWidth) ||
         (offsetLeft > 0 && !this.leftWidth) ||
@@ -115,6 +120,18 @@ export default {
       if (this.swiping) {
         this.swipeLeaveTransition(this.offset > 0 ? -1 : 1);
       };
+    },
+
+    onClick(position = 'outside') {
+      if (!this.offset) {
+        return;
+      }
+
+      if (this.onClose) {
+        this.onClose(position, this);
+      } else {
+        this.swipeMove(0);
+      }
     }
   }
 };

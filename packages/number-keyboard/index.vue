@@ -10,17 +10,18 @@
       @touchcancel="blurKey"
       @animationend="onAnimationEnd"
     >
-      <div class="van-number-keyboard__title van-hairline--top">
+      <div class="van-number-keyboard__title van-hairline--top" v-if="title">
         <span>{{ title }}</span>
       </div>
       <i 
         v-for="(key, index) in keys" 
         v-text="key"
         :data-key="index"
-        :class="['van-hairline', {
+        class="van-hairline"
+        :class="{
           'van-number-keyboard--active': index === active,
           'van-number-keyboard__delete': index === 11 && showDeleteKey
-        }]"
+        }"
       />
     </div>
   </transition>
@@ -36,10 +37,7 @@ export default {
       type: String,
       default: ''
     },
-    title: {
-      type: String,
-      default: '安全输入键盘'
-    },
+    title: String,
     zIndex: {
       type: Number,
       default: 100

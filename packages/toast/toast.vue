@@ -1,10 +1,10 @@
 <template>
   <transition name="van-toast-fade">
     <div class="van-toast-wrapper" v-show="visible">
-      <div :class="['van-toast', 'van-toast--' + displayStyle]">
+      <div class="van-toast" :class="[`van-toast--${displayStyle}`, `van-toast--${position}`]">
         <!-- text only -->
-        <div v-if="displayStyle === 'text'" class="van-toast__text">{{ message }}</div>
-        <div v-if="displayStyle === 'html'" class="van-toast__text" v-html="message" />
+        <div v-if="displayStyle === 'text'">{{ message }}</div>
+        <div v-if="displayStyle === 'html'" v-html="message" />
 
         <!-- with icon -->
         <template v-if="displayStyle === 'default'">
@@ -13,7 +13,7 @@
           <div v-if="message" class="van-toast__text">{{ message }}</div>
         </template>
       </div>
-      <div class="van-toast__overlay" v-if="forbidClick" />
+      <div class="van-toast__overlay" :class="{ 'van-toast__overlay--mask': mask }" v-if="forbidClick || mask" />
     </div>
   </transition>
 </template>
@@ -22,7 +22,6 @@
 import Icon from '../icon';
 import Loading from '../loading';
 
-const TOAST_TYPES = ['text', 'html', 'loading', 'success', 'fail'];
 const DEFAULT_STYLE_LIST = ['success', 'fail', 'loading'];
 
 export default {
@@ -34,18 +33,16 @@ export default {
   },
 
   props: {
+    mask: Boolean,
+    message: String,
+    forbidClick: Boolean,
     type: {
       type: String,
-      default: 'text',
-      validator: value => TOAST_TYPES.indexOf(value) > -1
+      default: 'text'
     },
-    message: {
+    position: {
       type: String,
-      default: ''
-    },
-    forbidClick: {
-      type: Boolean,
-      default: false
+      default: 'middle'
     }
   },
 

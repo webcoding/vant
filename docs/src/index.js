@@ -1,28 +1,24 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import App from './ExamplesDocsApp';
+import App from './DocsApp';
 import routes from './router.config';
-import ZanDoc from 'zan-doc';
-import isMobile from './is-mobile';
+import VantDoc from 'vant-doc';
+import isMobile from './utils/is-mobile';
 
 Vue.use(VueRouter);
-Vue.use(ZanDoc);
+Vue.use(VantDoc);
 
 const routesConfig = routes();
-routesConfig.push({
-  path: '/',
-  redirect: '/component/quickstart'
-});
 
 const router = new VueRouter({
   mode: 'hash',
-  base: '/zanui/vue/',
+  base: '/zanui/vant/',
   routes: routesConfig
 });
 
 router.beforeEach((route, redirect, next) => {
   if (isMobile) {
-    window.location.replace('/zanui/vue/examples');
+    location.replace('/zanui/vant/examples' + location.hash);
   }
   document.title = route.meta.title || document.title;
   next();
@@ -30,14 +26,10 @@ router.beforeEach((route, redirect, next) => {
 
 router.afterEach(() => {
   window.scrollTo(0, 0);
-  window.syncPath();
+  Vue.nextTick(() => window.syncPath());
 });
 
 window.vueRouter = router;
-
-if (process.env.NODE_ENV !== 'production') {
-  Vue.config.productionTip = false;
-}
 
 new Vue({ // eslint-disable-line
   render: h => h(App),

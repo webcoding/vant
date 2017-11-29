@@ -1,24 +1,10 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
-const docConfig = require('../docs/src/doc.config');
-const { extractExample } = require('zan-doc/src/helper');
-const styleLoaders = [
-  { loader: 'css-loader' },
-  { loader: 'postcss-loader', options: { sourceMap: true } }
-];
-
-// extract [components].vue from [components].md
-extractExample({
-  src: path.resolve(__dirname, '../docs/examples-docs'),
-  dist: path.resolve(__dirname, '../docs/examples-dist'),
-  nav: docConfig['zh-CN'].nav,
-  watch: !isProduction
-});
 
 module.exports = {
   entry: {
@@ -31,14 +17,14 @@ module.exports = {
     publicPath: '/',
     filename: '[name].js',
     umdNamedDefine: true,
-    chunkFilename: 'async.[name].js'
+    chunkFilename: 'async_[name].js'
   },
   devServer: {
     host: '0.0.0.0',
     historyApiFallback: {
       rewrites: [
-        { from: /^\/zanui\/vue\/examples/, to: '/examples.html' },
-        { from: /^\/zanui\/vue/, to: '/index.html' }
+        { from: /^\/zanui\/vant\/examples/, to: '/examples.html' },
+        { from: /^\/zanui\/vant/, to: '/index.html' }
       ]
     },
     stats: 'errors-only'
@@ -62,16 +48,7 @@ module.exports = {
             loader: 'vue-loader',
             options: {
               preserveWhitespace: false,
-              loaders: {
-                postcss: ExtractTextPlugin.extract({
-                  use: styleLoaders,
-                  fallback: 'vue-style-loader'
-                }),
-                css: ExtractTextPlugin.extract({
-                  use: styleLoaders,
-                  fallback: 'vue-style-loader'
-                })
-              }
+              extractCSS: true
             }
           }
         ]
@@ -79,26 +56,25 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules|vue-router\/|vue-loader\//,
-        loader: 'babel-loader'
+        use: [
+          'babel-loader'
+        ]
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({ use: styleLoaders })
+        use: ExtractTextPlugin.extract({
+          use: [
+            'css-loader',
+            'postcss-loader'
+          ]
+        })
       },
       {
         test: /\.md/,
-        loader: 'vue-markdown-loader',
-        options: {
-          preventExtract: true,
-          use: [[require('markdown-it-container'), 'demo']],
-          preprocess(MarkdownIt, source) {
-            const styleRegexp = /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/i;
-            const scriptRegexp = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i;
-            MarkdownIt.renderer.rules.table_open = () =>
-              '<table class="zan-doc-table">';
-            return source.replace(styleRegexp, '').replace(scriptRegexp, '');
-          }
-        }
+        use: [
+          'vue-loader',
+          'fast-vue-md-loader'
+        ]
       },
       {
         test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
